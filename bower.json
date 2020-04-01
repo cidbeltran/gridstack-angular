@@ -11,7 +11,7 @@
   ],
   "dependencies": {
     "angular": ">=1.3",
-    "gridstack": "~0.2.6"
+    "gridstack": "https://github.com/cidbeltran/gridstack.js.git#develop"
   },
   "license": "MIT",
   "ignore": [
