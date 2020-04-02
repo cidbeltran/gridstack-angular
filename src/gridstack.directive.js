@@ -21,33 +21,32 @@ app.directive('gridstack', ['$timeout', function($timeout) {
 
       var gridstack = controller.init(element, scope.options);
       scope.gridstackHandler = gridstack;
-
-      element.on('change', function(e, items) {
+      gridstack.on('change', function(e, items) {
         $timeout(function() {
           scope.$apply();
           scope.onChange({event: e, items: items});
         });
       });
 
-      element.on('dragstart', function(e, ui) {
+      gridstack.on('dragstart', function(e, ui) {
         scope.onDragStart({event: e, ui: ui});
       });
 
-      element.on('dragstop', function(e, ui) {
+      gridstack.on('dragstop', function(e, ui) {
         $timeout(function() {
           scope.$apply();
           scope.onDragStop({event: e, ui: ui});
         });
       });
 
-      element.on('resizestart', function(e, ui) {
+      gridstack.on('resizestart', function(e, ui) {
         scope.onResizeStart({event: e, ui: ui});
       });
 
-      element.on('resizestop', function(e, ui) {
+      gridstack.on('gsresizestop', function(e, element) {
         $timeout(function() {
           scope.$apply();
-          scope.onResizeStop({event: e, ui: ui});
+          scope.onResizeStop({event: e});
         });
       });
 

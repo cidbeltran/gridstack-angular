@@ -1,0 +1,8 @@
+*.log
+*.tgz
+*.zip
+.npmrc
+coverage
+#including dist so it can be published for now
+#dist
+node_modules

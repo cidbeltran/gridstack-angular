@@ -1,45 +1,13 @@
 {
   "name": "gridstack",
-  "version": "0.2.6",
-  "homepage": "https://github.com/troolee/gridstack.js",
-  "authors": [
-    "Pavel Reznikov <pashka.reznikov@gmail.com>"
-  ],
-  "description": "gridstack.js is a jQuery plugin for widget layout",
-  "main": [
-    "dist/gridstack.js",
-    "dist/gridstack.css"
-  ],
-  "moduleType": [
-    "amd"
-  ],
-  "dependencies": {
-    "lodash": ">= 4.14.2",
-    "jquery": ">= 3.1.0",
-    "jquery-ui": ">= 1.12.0"
-  },
-  "keywords": [
-    "gridstack",
-    "grid",
-    "gridster",
-    "layout",
-    "jquery"
-  ],
-  "license": "MIT",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "_release": "0.2.6",
+  "homepage": "https://github.com/cidbeltran/gridstack.js",
+  "_release": "03c7d3eb5a",
   "_resolution": {
-    "type": "version",
-    "tag": "v0.2.6",
-    "commit": "28ed6fa374592eb56590050cece409471fbfc41e"
+    "type": "branch",
+    "branch": "develop",
+    "commit": "03c7d3eb5a1a3c8f10d201233f28bf359caa0421"
   },
-  "_source": "https://github.com/troolee/gridstack.js.git",
-  "_target": "~0.2.6",
-  "_originalSource": "gridstack"
+  "_source": "https://github.com/cidbeltran/gridstack.js.git",
+  "_target": "develop",
+  "_originalSource": "https://github.com/cidbeltran/gridstack.js.git"
 }

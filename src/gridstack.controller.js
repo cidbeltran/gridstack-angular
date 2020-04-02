@@ -10,7 +10,9 @@ app.controller('GridstackController', ['$scope', function($scope) {
   this.gridstack = null;
 
   this.init = function(element, options) {
-    this.gridstack = element.gridstack(options).data('gridstack');
+    //this.gridstack = element.gridstack(options).data('gridstack');
+    this.gridstack = GridStack.init(options, element);
+
     return this.gridstack;
   };
 
@@ -23,8 +25,8 @@ app.controller('GridstackController', ['$scope', function($scope) {
 
   this.addItem = function(element) {
     if(this.gridstack) {
-      this.gridstack.makeWidget(element);
-      return element;
+      var gridstackItem = this.gridstack.makeWidget(element)
+      return gridstackItem;
     }
     return null;
   };

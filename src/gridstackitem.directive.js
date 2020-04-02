@@ -37,6 +37,9 @@ app.directive('gridstackItem', ['$timeout', function($timeout) {
       $(element).attr('data-gs-max-width', scope.gsItemMaxWidth);
       $(element).attr('data-gs-max-height', scope.gsItemMaxHeight);
       $(element).attr('data-gs-auto-position', scope.gsItemAutopos);
+      $(element).attr('data-gs-no-move', 'no');
+      $(element).attr('data-gs-no-resize', 'no');
+
       var widget = controller.addItem(element);
       var item = element.data('_gridstack_node');
       $timeout(function() {
@@ -45,7 +48,7 @@ app.directive('gridstackItem', ['$timeout', function($timeout) {
 
       var propertyChanged = function(newVal, oldVal) {
         if(newVal != oldVal) {
-          controller.gridstack.update($(element), scope.gsItemX, scope.gsItemY, scope.gsItemWidth, scope.gsItemHeight);
+          controller.gridstack.update(element, scope.gsItemX, scope.gsItemY, scope.gsItemWidth, scope.gsItemHeight);
         }
       };
 
