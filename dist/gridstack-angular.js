@@ -17,7 +17,9 @@ app.controller('GridstackController', ['$scope', function($scope) {
   this.gridstack = null;
 
   this.init = function(element, options) {
-    this.gridstack = element.gridstack(options).data('gridstack');
+    //this.gridstack = element.gridstack(options).data('gridstack');
+    this.gridstack = GridStack.init(options, element);
+
     return this.gridstack;
   };
 
@@ -30,8 +32,8 @@ app.controller('GridstackController', ['$scope', function($scope) {
 
   this.addItem = function(element) {
     if(this.gridstack) {
-      this.gridstack.makeWidget(element);
-      return element;
+      var gridstackItem = this.gridstack.makeWidget(element)
+      return gridstackItem;
     }
     return null;
   };
@@ -61,33 +63,32 @@ app.directive('gridstack', ['$timeout', function($timeout) {
 
       var gridstack = controller.init(element, scope.options);
       scope.gridstackHandler = gridstack;
-
-      element.on('change', function(e, items) {
+      gridstack.on('change', function(e, items) {
         $timeout(function() {
           scope.$apply();
           scope.onChange({event: e, items: items});
         });
       });
 
-      element.on('dragstart', function(e, ui) {
+      gridstack.on('dragstart', function(e, ui) {
         scope.onDragStart({event: e, ui: ui});
       });
 
-      element.on('dragstop', function(e, ui) {
+      gridstack.on('dragstop', function(e, ui) {
         $timeout(function() {
           scope.$apply();
           scope.onDragStop({event: e, ui: ui});
         });
       });
 
-      element.on('resizestart', function(e, ui) {
+      gridstack.on('resizestart', function(e, ui) {
         scope.onResizeStart({event: e, ui: ui});
       });
 
-      element.on('resizestop', function(e, ui) {
+      gridstack.on('gsresizestop', function(e, element) {
         $timeout(function() {
           scope.$apply();
-          scope.onResizeStop({event: e, ui: ui});
+          scope.onResizeStop({event: e});
         });
       });
 
@@ -136,6 +137,9 @@ app.directive('gridstackItem', ['$timeout', function($timeout) {
       $(element).attr('data-gs-max-width', scope.gsItemMaxWidth);
       $(element).attr('data-gs-max-height', scope.gsItemMaxHeight);
       $(element).attr('data-gs-auto-position', scope.gsItemAutopos);
+      $(element).attr('data-gs-no-move', 'no');
+      $(element).attr('data-gs-no-resize', 'no');
+
       var widget = controller.addItem(element);
       var item = element.data('_gridstack_node');
       $timeout(function() {
@@ -144,7 +148,7 @@ app.directive('gridstackItem', ['$timeout', function($timeout) {
 
       var propertyChanged = function(newVal, oldVal) {
         if(newVal != oldVal) {
-          controller.gridstack.update($(element), scope.gsItemX, scope.gsItemY, scope.gsItemWidth, scope.gsItemHeight);
+          controller.gridstack.update(element, scope.gsItemX, scope.gsItemY, scope.gsItemWidth, scope.gsItemHeight);
         }
       };
 
